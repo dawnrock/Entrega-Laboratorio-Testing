@@ -32,7 +32,7 @@ describe('src/common/components/confirmation-dialog/confirmation-dialog.hook spe
     expect(result.current.isOpen).toEqual(false);
   });
 
-  it('It should to change the state to true when open Dialog with a correct Lookup and set the actual item to itemToDelete delete the item', () => {
+  it('It should to change the state isOpen to true when open Dialog with a correct Lookup and set the actual item to itemToDelete', () => {
     const { result } = renderHook(() => useConfirmationDialog());
 
     act(() => {
