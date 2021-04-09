@@ -1,7 +1,6 @@
 import { mapProjectFromApiToVm } from './project.mapper';
 import * as apiModel from './api/project.api-model';
 import * as viewModel from './project.vm';
-import * as map  from 'common/mappers';
 
 describe('/src/pod/project/project.mapper specs', () => {
   describe('mapProjectFromApiToVm', () => {
@@ -106,7 +105,7 @@ describe('/src/pod/project/project.mapper specs', () => {
         externalId: '1234',
         employees: summaryMockEmployee,
       };
-      
+
       expect(result).toEqual(expectedResult);
     });
   });

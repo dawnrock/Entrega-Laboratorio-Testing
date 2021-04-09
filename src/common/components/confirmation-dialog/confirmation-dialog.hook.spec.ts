@@ -3,26 +3,34 @@ import { Lookup } from 'common/models';
 
 import { useConfirmationDialog } from './confirmation-dialog.hook';
 
-const localItem: Lookup = {
-  id: '1',
-  name: 'Manu',
-};
-
 describe('src/common/components/confirmation-dialog/confirmation-dialog.hook spec', () => {
-  it('It should create a empty lookup on "itemToDelete" when click onAccept', () => {
+
+  it('It should to isOpen false and the itemToDelete like empty Lookup when executes useConfirmationDialog', () => {
+    const { result } = renderHook(() => useConfirmationDialog());
+
+    expect(result.current.isOpen).toEqual(false);
+    expect(result.current.itemToDelete).toEqual({
+      id: '',
+      name: '',
+    });
+
+  })
+
+  it('It should to keep the property isOpen false and create a empty lookup on "itemToDelete" when click onAccept', () => {
     const { result } = renderHook(() => useConfirmationDialog());
 
     act(() => {
       result.current.onAccept();
     });
 
+    expect(result.current.isOpen).toEqual(false);
     expect(result.current.itemToDelete).toEqual({
       id: '',
       name: '',
     });
   });
 
-  it('It should set the state to false when click onClose', () => {
+  it('It should to set the property isOpen to false and create a empty lookup on "itemToDelete" when click onClose', () => {
     const { result } = renderHook(() => useConfirmationDialog());
 
     act(() => {
@@ -30,9 +38,18 @@ describe('src/common/components/confirmation-dialog/confirmation-dialog.hook spe
     });
 
     expect(result.current.isOpen).toEqual(false);
+    expect(result.current.itemToDelete).toEqual({
+      id: '',
+      name: '',
+    });
   });
 
-  it('It should to change the state isOpen to true when open Dialog with a correct Lookup and set the actual item to itemToDelete', () => {
+  it('It should to set the property isOpen to true when it feeds onOpenDialog with Lookup and set the actual item to itemToDelete', () => {
+    const localItem: Lookup = {
+      id: '1',
+      name: 'Manu',
+    };
+
     const { result } = renderHook(() => useConfirmationDialog());
 
     act(() => {
